@@ -10,6 +10,11 @@ import { NuevoPostComponent } from './components/nuevo-post/nuevo-post.component
 
 // Modulos
 import { ToastrModule } from 'ngx-toastr';
+import { NgxsModule } from '@ngxs/store';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -23,6 +28,16 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
+    NgxsModule.forRoot([], {
+      developmentMode: !environment.production
+    }),
+    NgxsReduxDevtoolsPluginModule.forRoot({
+      disabled: environment.production
+    }),
+    NgxsLoggerPluginModule.forRoot({
+      disabled: environment.production
+    })
+
   ],
   providers: [],
   bootstrap: [AppComponent]
