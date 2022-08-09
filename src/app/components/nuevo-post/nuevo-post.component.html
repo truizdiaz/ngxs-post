@@ -1,1 +1,5 @@
-<p>nuevo-post works!</p>
+<input type="text" class="form-control form-control-lg" [(ngModel)]="nombre" placeholder="Ingrese nombre">
+<textarea class="form-control form-control-lg mt-2" [(ngModel)]="descripcion" placeholder="Ingrese descripcion"></textarea>
+<div class="d-grid gap-2 mt-2">
+    <button class="btn btn-secondary btn-lg" (click)="agregarPost()">Agregar</button>
+</div>
