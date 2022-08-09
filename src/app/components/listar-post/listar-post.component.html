@@ -1,1 +1,10 @@
-<p>listar-post works!</p>
+<div class="card mb-2" *ngFor="let post of listPost">
+    <div class="card-body">
+        <h6>{{ post.nombre }}</h6>
+        <em>{{ post.descripcion }}</em>
+        <div class="d-grid gap-2 mt-2">
+            <button class="btn btn-danger" (click)="eliminarPost(post.id)">Eliminar</button>
+        </div>
+    </div>
+</div>
+<p *ngIf="listPost.length == 0">No hay post para mostrar</p>
