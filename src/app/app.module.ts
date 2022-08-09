@@ -15,6 +15,7 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 
 import { environment } from 'src/environments/environment';
+import { PostSate } from './components/store/posts.state';
 
 
 @NgModule({
@@ -28,7 +29,7 @@ import { environment } from 'src/environments/environment';
     FormsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
-    NgxsModule.forRoot([], {
+    NgxsModule.forRoot([PostSate], {
       developmentMode: !environment.production
     }),
     NgxsReduxDevtoolsPluginModule.forRoot({

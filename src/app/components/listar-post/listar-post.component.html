@@ -1,4 +1,4 @@
-<div class="card mb-2" *ngFor="let post of listPost">
+<div class="card mb-2" *ngFor="let post of posts$ | async">
     <div class="card-body">
         <h6>{{ post.nombre }}</h6>
         <em>{{ post.descripcion }}</em>
@@ -7,4 +7,4 @@
         </div>
     </div>
 </div>
-<p *ngIf="listPost.length == 0">No hay post para mostrar</p>
+<p *ngIf="(posts$ | async)?.length == 0">No hay post para mostrar</p>

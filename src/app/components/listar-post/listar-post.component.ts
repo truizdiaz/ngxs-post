@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngxs/store';
+import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 import { Post } from 'src/app/interfaces/post';
+import { EliminarPost } from '../store/posts.actions';
 
 @Component({
   selector: 'app-listar-post',
@@ -7,27 +11,18 @@ import { Post } from 'src/app/interfaces/post';
   styleUrls: ['./listar-post.component.css']
 })
 export class ListarPostComponent implements OnInit {
-  listPost: Post[] = [ 
-    {
-      id: 'd24242-dadad',
-      nombre: 'Bootstrap',
-      descripcion: "Es un framework css con un poderoso sistema de regillas"
-    },
-    {
-      id: 'dadada-dadad',
-      nombre: 'Angular',
-      descripcion: "Es un framework para crear SPA creado por Google"
-    },
-  ]
+  posts$: Observable<Post[]>
 
-  constructor() { }
+  constructor(private store: Store, private toastr: ToastrService) {
+    this.posts$ = this.store.select(state => state.posts.listPosts)
+   }
 
   ngOnInit(): void {
   }
 
   eliminarPost(id: string) {
-    console.log(id);
-    // this.listPost = this.listPost.filter(post => post.id !== id);
+    this.store.dispatch(new EliminarPost(id));
+    this.toastr.error('El post fue eliminado con exito', 'Post eliminado')
   }
 
 }
